@@ -1,12 +1,6 @@
 import type { Metadata } from "next";
-import { Nunito } from "next/font/google";
-import { Poppins } from "next/font/google";  // Adicionando a fonte Poppins
+import { Poppins } from "next/font/google"; 
 import "./globals.css";
-
-const nunito = Nunito({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
 
 const poppins = Poppins({
   subsets: ["latin"],
