@@ -1,12 +1,14 @@
 import { Heart } from "lucide-react";
+import { Trash } from "lucide-react";
 import { useState } from "react";
 import Image from "next/image";
 
-type PostProps = {
+interface PostProps {
   content: string;
+  onDelete: () => void; 
 };
 
-export default function Post({ content }: PostProps) {
+export default function Post({ content, onDelete}: PostProps) {
   const [liked, setLiked] = useState<boolean>(false);
   const [likes, setLikes] = useState<number>(0);
 
@@ -20,7 +22,6 @@ export default function Post({ content }: PostProps) {
     } else {
       setLikes(likes + 1); 
     }
-    
     setLiked(!liked);
   };
 
@@ -29,9 +30,9 @@ export default function Post({ content }: PostProps) {
       <div className="flex items-center gap-3 mb-4">
        <div className="w-10 h-10 rounded-full">
         <Image 
-         width={20} height={20} 
-         src="/banana.png" alt="Profile" 
-         className="w-full h-full rounded-full" 
+          width={20} height={20} 
+          src="/banana.png" alt="Profile" 
+          className="w-full h-full rounded-full" 
         />
         </div>
         <div>
@@ -48,6 +49,10 @@ export default function Post({ content }: PostProps) {
           onClick={handleLike}
         />
         <span className="text-sm text-red-500">{likes}</span>
+        <Trash 
+          onClick={onDelete} 
+          className="w-5 h-5 text-red-500 cursor-pointer ml-auto" 
+        />
       </div>
     </div>
   );
